@@ -12,12 +12,16 @@ export default function Login() {
     const password = data.password
     try {
       console.log(email, password);
-      let { data, error } = await supabase
+      const { data, error } = await supabase
         .auth
         .signUp({
           email: email,
           password: password
         })
+
+      if (error) {
+        console.log("error in login", error);
+      }
 
       if (data) {
         console.log("data", data);
